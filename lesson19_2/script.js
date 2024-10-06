@@ -1,7 +1,6 @@
 const output = document.querySelector('.data');
 
 let dates = new Date();
-console.log(dates);
 let time = dates.toTimeString();
 
 const dayWeekElem = () => {
@@ -35,5 +34,11 @@ const timeDay = () => {
 }
 
 const conclusion = () => {
-    
+    output.innerHTML = 
+    `${timeDay()} <br>
+    Сегодня: ${dayWeekElem()} <br>
+    Текущее время: ${time} <br>
+    До нового года осталось ${newYear()} дней`
 }
+
+conclusion();
