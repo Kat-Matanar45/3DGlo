@@ -3,6 +3,7 @@ const timer = (deadline) => {
     const timerMinutes = document.getElementById('timer-minutes');
     const timerSeconds = document.getElementById('timer-seconds');
     let interval;
+    let timeRemaining2;
 
     const getTimeRemaining = () => {
         let dateStop = new Date(deadline).getTime();
@@ -32,15 +33,16 @@ const timer = (deadline) => {
         else {timerSeconds.textContent = getTime.seconds};
 
     //    if (getTime.timeRemaining > 0) {setTimeout(updateClock, 1000)}
-
-        if (getTime.timeRemaining > 0) {interval = setInterval(updateClock, 1000)}; 
-        if ((getTime.timeRemaining === 0) || (getTime.timeRemaining < 0)) {
-            clearInterval(interval);
-            timerStop()
-        };
+        timeRemaining2 = getTime.timeRemaining;
     }
 
     updateClock();
+
+    if (timeRemaining2 > 0) {interval = setInterval(updateClock, 1000)}; 
+        if ((timeRemaining2 === 0) || (timeRemaining2 < 0)) {
+            clearInterval(interval);
+            timerStop()
+        };
     
 }
 
