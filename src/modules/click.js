@@ -1,10 +1,11 @@
 const click = () => {
     const clickBtn = document.querySelector('main>a');
 
-    clickBtn.addEventListener('click', () => {
+    clickBtn.addEventListener('click', (event) => {
+        event.preventDefault();
         document.querySelector('#service-block').scrollIntoView({
-            behavior: 'auto',
-            block: 'center'
+            behavior: 'smooth',
+            block: 'start'
         });
     })
 }

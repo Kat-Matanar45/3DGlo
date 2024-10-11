@@ -19,10 +19,11 @@ const menu = () => {
     menuBtn.addEventListener('click', handleMenu);
     closeBtn.addEventListener('click', handleMenu);
 
-    menuItems.forEach(menuItem => menuItem.addEventListener('click', () => {
-        id = menuItem.getAttribute('href');
-        animation();
+    menuItems.forEach(menuItem => menuItem.addEventListener('click', (event) => {
         handleMenu();
+        id = menuItem.getAttribute('href');
+        event.preventDefault();
+        animation();
     }));
 }
 
