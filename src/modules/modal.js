@@ -6,12 +6,14 @@ const modal = () => {
     let count = 0;
     let interval;
     let active = false;
+    const widthDoc = document.documentElement.clientWidth;
+    console.log(widthDoc);
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             active = !active;
             modalWindow.style.display = 'block';
-            flyAnimation();
+            if (widthDoc > 768) {flyAnimation()}
         })
     });
 
@@ -24,7 +26,10 @@ const modal = () => {
         count++;
         interval = requestAnimationFrame(flyAnimation);
     
-        if (count < 100) {popupContent.style.top = count * 3 + 'px'}
+        if (count < 100) {
+            popupContent.style.top = count * 2 + 'px';
+            popupContent.style.left = count * 8 + 'px'
+        }
         else { 
             cancelAnimationFrame(interval)
         }};
