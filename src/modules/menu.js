@@ -3,15 +3,27 @@ const menu = () => {
     const menu = document.querySelector('menu');
     const closeBtn = menu.querySelector('.close-btn');
     const menuItems = menu.querySelectorAll('ul>li>a');
+    let id;
 
     const handleMenu = () => {
-        menu.classList.toggle('active-menu')
+        menu.classList.toggle('active-menu');
     }
+
+    const animation = () => {
+            document.querySelector(id).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+    };
 
     menuBtn.addEventListener('click', handleMenu);
     closeBtn.addEventListener('click', handleMenu);
 
-    menuItems.forEach(menuItem => menuItem.addEventListener('click', handleMenu));
+    menuItems.forEach(menuItem => menuItem.addEventListener('click', () => {
+        id = menuItem.getAttribute('href');
+        animation();
+        handleMenu();
+    }));
 }
 
 export default menu
