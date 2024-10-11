@@ -9,13 +9,10 @@ const modal = () => {
     const widthDoc = document.documentElement.clientWidth;
 
     const flyAnimation = () => {
-        count++;
+        count += 0.010;
         interval = requestAnimationFrame(flyAnimation);
     
-        if (count < 100) {
-            popupContent.style.top = count * 2 + 'px';
-            popupContent.style.left = count * 8 + 'px';
-        }
+        if (count < 1) {popupContent.style.opacity = count}
         else { 
             cancelAnimationFrame(interval)
         }};
