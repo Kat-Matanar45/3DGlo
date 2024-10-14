@@ -1,8 +1,20 @@
 const footerForm = () => {
-    const form2Name = document.getElementById('form2-name');
+    const formName = document.getElementById('form2-name');
+    const formPhone = document.getElementById('form2-phone');
+    const formEmail = document.getElementById('form2-email');
 
-    form2Name.addEventListener('input', (e) => {
+    console.log(formPhone)
+
+    formName.addEventListener('input', (e) => {
         e.target.value = e.target.value.replace(/[^а-яА-Я\s\-]+/, '')
+    })
+
+    formPhone.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^\d\-\(\)]+/, '')
+    })
+
+    formEmail.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^\w\@\-\_\.\!\~\*\']+/, '') 
     })
 }
 
