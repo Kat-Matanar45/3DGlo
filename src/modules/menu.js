@@ -5,26 +5,26 @@ const menu = () => {
     const menuItems = menu.querySelectorAll('ul>li>a');
     let id;
 
-    const handleMenu = () => {
-        menu.classList.toggle('active-menu');
+document.body.addEventListener('click', (e) => {
+
+    if (e.target.closest('.menu')) {
+        menu.classList.add('active-menu');
     }
 
-    const animation = () => {
-            document.querySelector(id).scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-    };
+    if (e.target.classList.contains('close-btn') || (!e.target.closest('menu') && !e.target.closest('.menu'))) {
+        menu.classList.remove('active-menu');
+    }
 
-    menuBtn.addEventListener('click', handleMenu);
-    closeBtn.addEventListener('click', handleMenu);
-
-    menuItems.forEach(menuItem => menuItem.addEventListener('click', (event) => {
-        handleMenu();
-        id = menuItem.getAttribute('href');
-        event.preventDefault();
-        animation();
-    }));
+    if (e.target.tagName === 'A' && e.target.closest('menu')) {
+        e.preventDefault(); 
+        id = e.target.getAttribute('href'); 
+        menu.classList.remove('active-menu'); 
+        document.querySelector(id).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+});
 }
 
 export default menu

@@ -6,7 +6,7 @@ import calc from "./modules/calc";
 import inputBan from "./modules/inputBan";
 import tabs from "./modules/tabs";
 
-timer('16 october 2024');
+timer('30 october 2024');
 menu();
 modal();
 click();
