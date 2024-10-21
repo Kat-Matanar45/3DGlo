@@ -6,6 +6,7 @@ import calc from "./modules/calc";
 import inputBan from "./modules/inputBan";
 import tabs from "./modules/tabs";
 import slider from "./modules/slider";
+import sliderCarousel from "./modules/sliderCarousel";
 
 timer('30 october 2024');
 menu();
@@ -15,3 +16,4 @@ calc();
 inputBan();
 tabs();
 slider();
+sliderCarousel();
