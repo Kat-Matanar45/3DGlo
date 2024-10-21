@@ -5,6 +5,7 @@ import click from "./modules/click";
 import calc from "./modules/calc";
 import inputBan from "./modules/inputBan";
 import tabs from "./modules/tabs";
+import slider from "./modules/slider";
 
 timer('30 october 2024');
 menu();
@@ -13,3 +14,4 @@ click();
 calc();
 inputBan();
 tabs();
+slider();
