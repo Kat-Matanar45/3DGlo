@@ -9,7 +9,7 @@ const slider = () => {
     let dots;
 
     const newDot = () => {
-        slides.forEach((index) => {
+        slides.forEach((item, index) => {
         let liDot = document.createElement('li');
         liDot.classList.add('dot');
         if (index === 0) {liDot.classList.add('dot-active')};
