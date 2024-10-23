@@ -12,7 +12,7 @@ timer('30 october 2024');
 menu();
 modal();
 click();
-calc();
+calc(100);
 inputBan();
 tabs();
 slider();
