@@ -5,6 +5,7 @@ const calc = (price = 100) => {
     const calcCount = calcBlock.querySelector('.calc-count');
     const calcDay = calcBlock.querySelector('.calc-day');
     const total = document.querySelector('#total');
+    let totalValue = 0;
 
     const figures = (e) => {
         e.target.value = e.target.value.replace(/\D+/, '')
@@ -14,7 +15,6 @@ const calc = (price = 100) => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = calcSquare.value;
 
-        let totalValue = 0; 
         let calcCountValue = 1;
         let calcDayValue = 1;
 
@@ -22,8 +22,11 @@ const calc = (price = 100) => {
             calcCountValue = calcCountValue + (+calcCount.value / 10)
         };
 
-        if (calcDay.value && calcDay.value < 5) {calcDayValue = 2} 
-        else if (calcDay.value && calcDay.value < 10) {calcDayValue = 1.5};
+        if (calcDay.value && calcDay.value < 5) {
+            calcDayValue = 2
+        } else if (calcDay.value && calcDay.value < 10) {
+            calcDayValue = 1.5
+        };
 
         if (calcTypeValue && calcSquareValue) {
             totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
@@ -31,17 +34,32 @@ const calc = (price = 100) => {
             totalValue = 0;
         }
 
-        total.textContent = totalValue;
+        animation();
+        //   total.textContent = totalValue;
     };
+
+    const animation = () => {
+        let number = 0;
+        if (totalValue !== 0) {
+        const counting = setInterval(() => {
+            number++;
+            total.textContent = number;
     
+            if (number >= totalValue) {
+                clearInterval(counting); 
+            }
+        }, 3);
+    }
+    };
+
     calcSquare.addEventListener('input', figures);
     calcCount.addEventListener('input', figures);
     calcDay.addEventListener('input', figures);
     calcBlock.addEventListener('change', (e) => {
         if (e.target === calcType || e.target === calcSquare || e.target === calcCount || e.target === calcDay) {
             countCalc();
-        }  
-    })
+        }
+    });
 }
 
 export default calc
