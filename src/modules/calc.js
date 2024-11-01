@@ -6,6 +6,7 @@ const calc = (price = 100) => {
     const calcDay = calcBlock.querySelector('.calc-day');
     const total = document.querySelector('#total');
     let totalValue = 0;
+    let number;
 
     const figures = (e) => {
         e.target.value = e.target.value.replace(/\D+/, '')
@@ -33,32 +34,32 @@ const calc = (price = 100) => {
         } else {
             totalValue = 0;
         }
-
-        animation();
-        //   total.textContent = totalValue;
+        // total.textContent = totalValue;
     };
 
     const animation = () => {
-        let number = 0;
+        number = 0;
         if (totalValue !== 0) {
         const counting = setInterval(() => {
             number++;
-            total.textContent = number;
     
             if (number >= totalValue) {
-                clearInterval(counting); 
+                clearInterval(counting);
+                number = totalValue; 
             }
-        }, 3);
+            total.textContent = number;
+        }, 0,2);
     }
     };
 
     calcSquare.addEventListener('input', figures);
     calcCount.addEventListener('input', figures);
     calcDay.addEventListener('input', figures);
-    calcBlock.addEventListener('change', (e) => {
+    calcBlock.addEventListener('input', (e) => {
         if (e.target === calcType || e.target === calcSquare || e.target === calcCount || e.target === calcDay) {
             countCalc();
-        }
+        };
+            animation();
     });
 }
 

@@ -8,7 +8,7 @@ import tabs from "./modules/tabs";
 import slider from "./modules/slider";
 import sliderCarousel from "./modules/sliderCarousel";
 
-timer('30 october 2024');
+timer('27 december 2024');
 menu();
 modal();
 click();
