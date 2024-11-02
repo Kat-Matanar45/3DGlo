@@ -30,7 +30,7 @@ const calc = (price = 100) => {
         };
 
         if (calcTypeValue && calcSquareValue) {
-            totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
+            totalValue = Math.round(price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue);
         } else {
             totalValue = 0;
         }
@@ -41,14 +41,14 @@ const calc = (price = 100) => {
         number = 0;
         if (totalValue !== 0) {
         const counting = setInterval(() => {
-            number++;
-    
+            totalValue % 5 === 0 ? number+= 5 : number++;
+
             if (number >= totalValue) {
                 clearInterval(counting);
                 number = totalValue; 
             }
             total.textContent = number;
-        }, 0,2);
+        }, 1);
     }
     };
 
