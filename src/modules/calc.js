@@ -1,3 +1,5 @@
+import { animate } from "./helpers";
+
 const calc = (price = 100) => {
     const calcBlock = document.querySelector('.calc-block');
     const calcType = calcBlock.querySelector('.calc-type');
@@ -34,22 +36,6 @@ const calc = (price = 100) => {
         } else {
             totalValue = 0;
         }
-        // total.textContent = totalValue;
-    };
-
-    const animation = () => {
-        number = 0;
-        if (totalValue !== 0) {
-        const counting = setInterval(() => {
-            totalValue % 5 === 0 ? number+= 5 : number++;
-
-            if (number >= totalValue) {
-                clearInterval(counting);
-                number = totalValue; 
-            }
-            total.textContent = number;
-        }, 1);
-    }
     };
 
     calcSquare.addEventListener('input', figures);
@@ -59,7 +45,19 @@ const calc = (price = 100) => {
         if (e.target === calcType || e.target === calcSquare || e.target === calcCount || e.target === calcDay) {
             countCalc();
         };
-            animation();
+
+       animate({
+        duration: 2000,
+        timing(timeFraction) {
+          return Math.pow(timeFraction, 2);
+        },
+        draw(progress) {
+            number = 0;
+        if (totalValue !== 0 && number !== totalValue) {
+            number = Math.round(totalValue * progress);
+        }
+        total.textContent = number;
+    }});
     });
 }
 
