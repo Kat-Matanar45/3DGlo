@@ -7,6 +7,7 @@ import inputBan from "./modules/inputBan";
 import tabs from "./modules/tabs";
 import slider from "./modules/slider";
 import sliderCarousel from "./modules/sliderCarousel";
+import sendForm from "./modules/sendForm";
 
 timer('27 december 2024');
 menu();
@@ -17,3 +18,4 @@ inputBan();
 tabs();
 slider();
 sliderCarousel();
+sendForm();
