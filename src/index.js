@@ -18,4 +18,12 @@ inputBan();
 tabs();
 slider();
 sliderCarousel();
-sendForm();
+sendForm({
+    formId: 'form1', 
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+});
