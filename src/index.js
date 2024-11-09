@@ -19,11 +19,15 @@ tabs();
 slider();
 sliderCarousel();
 sendForm({
-    formId: 'form1', 
-    someElem: [
-        {
-            type: 'block',
-            id: 'total'
-        }
-    ]
+    formId: 'form1',
+    someElem: [{
+        type: 'block',
+        id: 'total'
+    }]
+});
+sendForm({
+    formId: 'form2'
+});
+sendForm({
+    formId: 'form3'
 });

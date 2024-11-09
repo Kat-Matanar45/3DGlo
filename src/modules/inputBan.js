@@ -12,11 +12,13 @@ const inputBan = () => {
 
     inputTel.forEach((item) => {
         item.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/[^\d\-\(\)]+/, '')
+            e.target.value = e.target.value.replace(/[^\d\-\+\(\)]+/, '')
         })
     });
 
-    inputPla.addEventListener('input', inputText);
+    inputPla.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^а-яА-Я\s\d\W]+/, '')
+    });
 
     inputEmail.forEach((item) => {
         item.addEventListener('input', (e) => {
