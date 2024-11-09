@@ -1,9 +1,16 @@
 const sendForm = ({formId, someElem = []}) => {
     const form = document.getElementById(formId);
     const statusBlock = document.createElement('div');
-    const loadText = 'Загрузка...';
-    const errorText = 'Ошибка!';
+  //  const loadText = 'Загрузка...';
+    const errorText = 'Ошибка! Попробуйте повторить отправку позже!';
     const successText = 'Спасибо! Наш менеджер с Вами свяжется.';
+
+    const statusBlokImg = () => {
+        const img = document.createElement('img');
+        img.src = 'images/load.gif';
+        img.alt = 'Загрузка';
+        statusBlock.append(img);
+    }
 
     const senData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -16,11 +23,14 @@ const sendForm = ({formId, someElem = []}) => {
     }
 
     const submitForm = () => {
+        statusBlock.textContent = '';
+
         const formElements = form.querySelectorAll('input')
         const formData = new FormData(form);
         const formBody = {};
 
-        statusBlock.textContent = loadText;
+       // statusBlock.textContent = loadText;
+        statusBlokImg();
         form.append(statusBlock);
 
         formData.forEach((val, key) => {
@@ -40,6 +50,11 @@ const sendForm = ({formId, someElem = []}) => {
         senData({formBody})
             .then(data => {
                 statusBlock.textContent = successText;
+
+                if (formId === 'form3') {
+                    statusBlock.style.color = "white"
+                };
+
                 formElements.forEach(input => input.value = '')
             })
             .catch(error => {
