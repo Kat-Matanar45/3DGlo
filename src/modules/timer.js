@@ -6,12 +6,12 @@ const timer = (deadline) => {
     let timeRemaining2;
 
     const getTimeRemaining = () => {
-        let dateStop = new Date(deadline).getTime();
-        let dateNow = new Date().getTime();
-        let timeRemaining = (dateStop - dateNow) / 1000;
-        let hours = Math.floor(timeRemaining / 60 / 60);
-        let minutes = Math.floor((timeRemaining / 60) % 60);
-        let seconds = Math.floor(timeRemaining % 60);
+        const dateStop = new Date(deadline).getTime();
+        const dateNow = new Date().getTime();
+        const timeRemaining = (dateStop - dateNow) / 1000;
+        const hours = Math.floor(timeRemaining / 60 / 60);
+        const minutes = Math.floor((timeRemaining / 60) % 60);
+        const seconds = Math.floor(timeRemaining % 60);
         
         return {timeRemaining, hours, minutes, seconds};
     }
@@ -23,7 +23,7 @@ const timer = (deadline) => {
     }
 
     const updateClock = () => {
-        let getTime = getTimeRemaining();
+        const getTime = getTimeRemaining();
 
         if (getTime.hours < 10) {timerHours.textContent = '0' + getTime.hours}
         else {timerHours.textContent = getTime.hours};
@@ -32,7 +32,6 @@ const timer = (deadline) => {
         if (getTime.seconds < 10) {timerSeconds.textContent = '0' + getTime.seconds}
         else {timerSeconds.textContent = getTime.seconds};
 
-    //    if (getTime.timeRemaining > 0) {setTimeout(updateClock, 1000)}
         timeRemaining2 = getTime.timeRemaining;
     }
 

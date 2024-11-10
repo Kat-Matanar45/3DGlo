@@ -1,7 +1,6 @@
 const sendForm = ({formId, someElem = []}) => {
     const form = document.getElementById(formId);
     const statusBlock = document.createElement('div');
-  //  const loadText = 'Загрузка...';
     const errorText = 'Ошибка! Попробуйте повторить отправку позже!';
     const successText = 'Спасибо! Наш менеджер с Вами свяжется.';
 
@@ -23,13 +22,11 @@ const sendForm = ({formId, someElem = []}) => {
     }
 
     const submitForm = () => {
-        statusBlock.textContent = '';
 
         const formElements = form.querySelectorAll('input')
         const formData = new FormData(form);
         const formBody = {};
 
-       // statusBlock.textContent = loadText;
         statusBlokImg();
         form.append(statusBlock);
 
@@ -71,6 +68,10 @@ const sendForm = ({formId, someElem = []}) => {
             e.preventDefault();
     
             submitForm();
+
+            setInterval(() => {
+                statusBlock.textContent = ''
+            }, 3000)
         })
     } catch (error) {
         console.log(error.message)
