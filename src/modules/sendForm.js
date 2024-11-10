@@ -1,8 +1,22 @@
 const sendForm = ({formId, someElem = []}) => {
     const form = document.getElementById(formId);
+    let empty;
+    const formElements = form.querySelectorAll('input');
     const statusBlock = document.createElement('div');
     const errorText = 'Ошибка! Попробуйте повторить отправку позже!';
     const successText = 'Спасибо! Наш менеджер с Вами свяжется.';
+    const emptyText = 'Заполните все поля!';
+
+    const emptyBan = () => {
+        empty = false;
+        formElements.forEach(elem => {
+                console.log(elem)
+                console.log(elem.value)
+                if (elem.value === '' || elem.value === null) {return empty = true}
+                else {return empty = false}
+        });
+
+    };
 
     const statusBlokImg = () => {
         const img = document.createElement('img');
@@ -23,7 +37,7 @@ const sendForm = ({formId, someElem = []}) => {
 
     const submitForm = () => {
 
-        const formElements = form.querySelectorAll('input')
+        
         const formData = new FormData(form);
         const formBody = {};
 
@@ -66,18 +80,23 @@ const sendForm = ({formId, someElem = []}) => {
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-    
-            submitForm();
 
-            setInterval(() => {
+            emptyBan();
+
+            if (empty === false) {
+                submitForm();
+
+                setInterval(() => {
                 statusBlock.textContent = ''
-            }, 3000)
+            }, 4000)
+            } else {
+                statusBlock.textContent = emptyText;
+            } 
         })
     } catch (error) {
         console.log(error.message)
     }
 
-    
 }
 
 export default sendForm
