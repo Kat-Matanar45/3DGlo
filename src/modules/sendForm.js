@@ -1,21 +1,28 @@
 const sendForm = ({formId, someElem = []}) => {
     const form = document.getElementById(formId);
-    let empty;
-    const formElements = form.querySelectorAll('input');
     const statusBlock = document.createElement('div');
+    const formElements = form.querySelectorAll('input');
     const errorText = 'Ошибка! Попробуйте повторить отправку позже!';
     const successText = 'Спасибо! Наш менеджер с Вами свяжется.';
     const emptyText = 'Заполните все поля!';
+    let empty;
 
     const emptyBan = () => {
         empty = false;
         formElements.forEach(elem => {
-                console.log(elem)
-                console.log(elem.value)
-                if (elem.value === '' || elem.value === null) {return empty = true}
-                else {return empty = false}
+                if (elem.value.trim() === '') {empty = true}
         });
+        return empty;
+    };
 
+    const addStatusBlock = () => {
+        
+        statusBlokImg();
+        form.append(statusBlock);
+
+        if (formId === 'form3') {
+            statusBlock.style.color = "white"
+        };
     };
 
     const statusBlokImg = () => {
@@ -23,7 +30,7 @@ const sendForm = ({formId, someElem = []}) => {
         img.src = 'images/load.gif';
         img.alt = 'Загрузка';
         statusBlock.append(img);
-    }
+    };
 
     const senData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -33,16 +40,12 @@ const sendForm = ({formId, someElem = []}) => {
                 "Content-Type": "application/json"
             }
         }).then(res => res.json())
-    }
+    };
 
     const submitForm = () => {
 
-        
         const formData = new FormData(form);
         const formBody = {};
-
-        statusBlokImg();
-        form.append(statusBlock);
 
         formData.forEach((val, key) => {
             formBody[key] = val
@@ -56,22 +59,18 @@ const sendForm = ({formId, someElem = []}) => {
             if (elem.type === 'input') {
                 formBody[elem.id] = element.value;
             }
-        })
+        });
 
         senData({formBody})
             .then(data => {
                 statusBlock.textContent = successText;
-
-                if (formId === 'form3') {
-                    statusBlock.style.color = "white"
-                };
 
                 formElements.forEach(input => input.value = '')
             })
             .catch(error => {
                 statusBlock.textContent = errorText;
             })
-    }
+    };
 
     try {
         if (!form) {
@@ -83,20 +82,21 @@ const sendForm = ({formId, someElem = []}) => {
 
             emptyBan();
 
-            if (empty === false) {
-                submitForm();
+            addStatusBlock();
 
-                setInterval(() => {
-                statusBlock.textContent = ''
-            }, 4000)
+            if (empty == false) {
+                submitForm();
             } else {
                 statusBlock.textContent = emptyText;
-            } 
+            };
+
+            setInterval(() => {
+                statusBlock.textContent = ''
+            }, 4000)
         })
     } catch (error) {
         console.log(error.message)
     }
-
 }
 
 export default sendForm
